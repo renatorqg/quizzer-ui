@@ -65,10 +65,10 @@ gulp.task('scripts', ['coffee'], function () {
   return gulp.src('app/scripts/**/*.js')
     .pipe(jshint(), gutil.log('Running jsHint'))
     .pipe(jshint.reporter('default'))
-    .pipe(browserify({
-      insertGlobals: true,
-      debug: !gulp.env.production
-    }))
+    // .pipe(browserify({
+    //   insertGlobals: true,
+    //   debug: !gulp.env.production
+    // }))
     .pipe(gulp.dest('app/scripts'))
     .pipe(connect.reload());
 });

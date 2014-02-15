@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="Quizzer"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,101 +12,14 @@
 
         <!-- build:css style.css -->
         <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendors/angular-ui/build/angular-ui.min.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     </head>
     <body>
-
-      <header class="navbar navbar-static-top qz-topbar">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Quizzer</a>
-          </div>
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Inserir chave secreta...">
-            </div>
-            <button type="submit" class="btn btn-default">Entrar</button>
-          </form>
-        </div>
-      </header>
-      
-      <div class="container">
-        <section class="matches">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Partidas</h2>
-              <p>Por favor, selecione uma partida.</p>
-            </div>
-          </div>
-          <div class="row">
-            
-            <!-- Projeto -->
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading ">
-                  <h5>Estrutura de Dados II <span class="label label-success pull-right">DISPONÍVEL</span></h5>
-                </div>
-                <div class="panel-body">
-                  <p>Participantes: 03/20</p>
-                  <button class="btn btn-default">ENTRAR</button>
-                </div>
-              </div>
-            </div>
-            <!-- Fim Projeto -->
-
-                        <!-- Projeto -->
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading ">
-                  <h5>Estrutura de Dados II <span class="label label-warning pull-right">EM ANDAMENTO</span></h5>
-                </div>
-                <div class="panel-body">
-                  <p>Participantes: 03/20</p>
-                  <button class="btn btn-default">ENTRAR</button>
-                </div>
-              </div>
-            </div>
-            <!-- Fim Projeto -->
-
-            <!-- Projeto -->
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading ">
-                  <h5>Algoritmos e estrutu...<span class="label label-warning pull-right">EM ANDAMENTO</span></h5>
-                </div>
-                <div class="panel-body">
-                  <p>Participantes: 03/20</p>
-                  <button class="btn btn-default">ENTRAR</button>
-                </div>
-              </div>
-            </div>
-            <!-- Fim Projeto -->
-
-            <!-- Projeto -->
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading ">
-                  <h5>Estrutura de Dados II <span class="label label-danger pull-right">LOTADO</span></h5>
-                </div>
-                <div class="panel-body">
-                  <p>Participantes: 20/20</p>
-                  <button class="btn btn-default" disabled="disabled">ENTRAR</button>
-                </div>
-              </div>
-            </div>
-            <!-- Fim Projeto -->
-          </div>
-        </section>
-      </div>
+      <div ng-view></div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
@@ -122,10 +35,16 @@
         </script>
 
         <!-- build:js script.js -->
-        <script src="vendors/sizzle/dist/sizzle.min.js"></script>
-        <script src="vendors/jquery/dist/jquery.min.js"></script>
+        <!-- script src="vendors/sizzle/dist/sizzle.min.js"></script -->
+        <!-- script src="vendors/jquery/dist/jquery.min.js"></script -->
         <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="scripts/script.js"></script>
+
+        <script src="vendors/angular/angular.min.js"></script>
+        <script src="vendors/angular-route/angular-route.min.js"></script>
+        <script src="vendors/angular-ui/build/angular-ui.min.js"></script>
+
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/mainController.js"></script>
         <!-- endbuild -->
 
     </body>
