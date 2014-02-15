@@ -1,0 +1,20 @@
+{
+  "name": "quizzer-ui",
+  "version": "0.0.4",
+  "homepage": "https://github.com/PontoDigital/quizzer-ui",
+  "authors": [
+    "Bernardo Gurgel <bernardogfilho@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}
