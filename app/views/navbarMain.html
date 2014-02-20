@@ -1,0 +1,32 @@
+<header class="navbar navbar-static-top qz-topbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h1>Quizzer</h1>
+    </div>
+    <form name="loginForm" ng-submit="masterLogin()"
+          class="navbar-form navbar-right" novalidate>
+      <div class="form-group">
+        <span ng-show="invalidPassword" class="text-danger">
+          Senha incorreta.
+        </span>
+        <input type="password"
+               class="form-control"
+               placeholder="Inserir chave secreta..."
+               ng-model="password"
+               ng-change="invalidPassword = false"
+               required>
+        <button type="submit" class="btn btn-primary"
+                ng-disabled="loginForm.$invalid">
+                Entrar
+        </button>
+      </div>
+    </form>
+  </div>
+</header>
+      

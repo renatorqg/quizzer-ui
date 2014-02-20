@@ -1,0 +1,34 @@
+<div class="container" ng-controller="matchesCtrl">
+  <section class="matches">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Partidas</h2>
+        <p>Por favor, selecione uma partida.</p>
+      </div>
+    </div>
+    <div class="row">
+      
+      <!-- Projeto -->
+      <div class="col-md-4" ng-repeat="match in matches">
+        <div class="panel panel-default">
+          <div class="panel-heading ">
+            <h5>{{ match.title }}
+              <span class="label pull-right"
+                ng-class="{
+                  'label-success': match.status == 'disponível',
+                  'label-warning': match.status == 'em andamento',
+                  'label-danger' : match.status == 'lotado'
+                  }">
+                {{ match.status | uppercase }}
+              </span>
+            </h5>
+          </div>
+          <div class="panel-body">
+            <p>Participantes: {{ match.current }}/{{ match.total }}</p>
+            <button class="btn btn-default" ng-click="playerLogin($index)">ENTRAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

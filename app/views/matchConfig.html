@@ -1,0 +1,247 @@
+<div class="container" ng-controller="matchConfigCtrl">
+  <div class="page-header">
+    <h2>
+      <span ng-hide="match.name">Nova partida</span>
+      {{ match.name | uppercase }}
+      <div class="pull-right">
+      <small ng-show="match.id">IDENTIFICADOR: '{{ match.id }}'
+      <small>
+        <span class="text-info glyphicon glyphicon-question-sign"
+              tooltip="Informe este código aos jogadores para que eles possam entrar na partida.">
+        </span>
+        </small>
+      </small>
+      </div>
+  </div>
+  <form name="matchConfigForm" class="form-horizontal">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="matchName" class="col-sm-3 control-label">
+          Título
+          <span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control"
+                 id           = "matchName"
+                 ng-model     = "match.name"
+                 ng-minlength = 3
+                 placeholder  = "Nome da partida"
+                 ng-disabled  ="match.state != 'setting'"
+                 required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="totalPlayers" class="col-sm-3 control-label">
+          Participantes
+          <span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control"
+                 id="totalPlayers"
+                 ng-model="totalPlayers"
+                 placeholder="Num."
+                 required>
+        </div>
+        <div class="progress qz-progress">
+          <div class="progress-bar" role="progressbar"
+               ng-class="{
+                  'progress-bar-default': match.players != totalPlayers,
+                  'progress-bar-success': match.players == totalPlayers
+                }"
+               aria-valuenow="{{ match.players / totalPlayers }}"
+               aria-valuemin="0"
+               aria-valuemax="100"
+               style="width: {{ 100 * match.players / totalPlayers }}%;">
+              {{ match.players }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-3 control-label">
+          Tempo (seg)
+          <span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control"
+                 ng-model="match.time"
+                 placeholder="Seg"
+                 required>
+        </div>
+        <div class="col-sm-7 form-group form-inline">
+          <div class="radio">
+            <label>
+              <input type="radio" name="timeTarget"
+                     ng-model="match.timeTarget"
+                     value="total">
+              Tempo total ou...
+            </label>
+            <label>
+              <input type="radio" name="timeTarget"
+                     ng-model="match.timeTarget"
+                     value="question">
+              em cada questão
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="matchType" class="col-sm-3 control-label">
+          Participação
+          <span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-8">
+          <div class="radio">
+            <label>
+            <input type="radio" name="matchType" ng-model="match.type" value="individual">
+            Individual
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+            <input type="radio" name="matchType" ng-model="match.type" value="group">
+            Grupo
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="well well-sm" collapse="match.type != 'group'">
+
+        <div class="form-group">
+          <label for="numGroups" class="col-sm-3 control-label">Qde. de grupos</label>
+          <div class="col-sm-2">
+            <input type="number" class="form-control"
+                   id="numGroups"
+                   placeholder="Qtd."
+                   ng-model="match.group.num"
+                   required>
+          </div>
+          <span class="text-info glyphicon glyphicon-question-sign"
+                tooltip="Ao iniciar, os participantes serão distribuídos aleatoriamente nos diferentes grupos.">
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="scoreType" class="col-sm-3 control-label">Pontuação do grupo</label>
+          <div class="col-sm-8">
+            <div class="radio">
+              <label>
+              <input type="radio" name="scoreType"
+                     ng-model="match.group.scoreType"
+                     value="average">
+              Média do grupo
+              <span class="text-info glyphicon glyphicon-question-sign"
+                    tooltip="As respostas de todos os membros do grupo serão consideradas. A pontuação do grupo seguirá uma proporção de respostas certas pelo total de membros.">
+              </span>
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+              <input type="radio" name="scoreType"
+                     ng-model="match.group.scoreType"
+                     value="majority">
+              Maioria absoluta do grupo
+              <span class="text-info glyphicon glyphicon-question-sign"
+                    tooltip="A opção mais escolhida pelos membros do grupo será considerada para todo o grupo. Caso haja empate entre as mais escolhidas, mesmo uma sendo a certa, será considerada como resposta errada para todo o grupo.">
+              </span>
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+              <input type="radio" name="scoreType"
+                     ng-model="match.group.scoreType"
+                     value="first">
+              Primeiro a responder no grupo
+              <span class="text-info glyphicon glyphicon-question-sign"
+                    tooltip="Será levada em consideração apenas a resposta do membro do grupo que respondeu primeiro.">
+              </span>
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+              <input type="radio" name="scoreType"
+                     ng-model="match.group.scoreType"
+                     value="consensus">
+              Consenso no grupo
+              <span class="text-info glyphicon glyphicon-question-sign"
+                    tooltip="O grupo só segue adiante se todos escolherem a mesma opção. Em cada opção, é apresentada a quantidade de membros do grupo que optaram por ela. Cada indivíduo pode, então, mudar sua resposta de forma a haver um consenso.">
+              </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="groupType" class="col-sm-3 control-label">Identificação</label>
+          <div class="col-sm-8">
+            <div class="radio">
+              <label>
+              <input type="radio" name="groupVisibility"
+                     ng-model="match.group.visibility"
+                     value="visible">
+              Visível
+              <span class="text-info glyphicon glyphicon-question-sign"
+                    tooltip="Cada grupo terá uma identificação visual para facilitar os participantes saberem quem são seus colegas de grupo.">
+              </span>
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+              <input type="radio" name="groupVisibility"
+                     ng-model="match.group.visibility"
+                     value="finished">
+              Visível no término
+              <span class="text-info glyphicon glyphicon-question-sign"
+                    tooltip="Não há uma identificação visual dos grupos. Os jogares terão que colaborar com os colegas sem saber quem são. Porém, no final da partida, os grupos serão identificados.">
+              </span>
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+              <input type="radio" name="groupVisibility"
+                     ng-model="match.group.visibility"
+                     value="none">
+              Sem identificação
+              <span class="text-info glyphicon glyphicon-question-sign"
+                    tooltip="ão há uma identificação visual dos grupos. Os jogares não saberão com quem estarão colaborando, nem mesmo no final da partida.">
+              </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="pull-right">
+        <button type="button" class="btn btn-primary"
+                ng-disabled= "matchConfigForm.$invalid || match.state != 'setting'"
+                ng-click   = "createMatch()"
+                ng-show    = "match.state == 'setting'">
+          Criar
+        </button>
+        <button type="button" class="btn btn-success"
+                ng-show="match.state == 'waiting'"
+                ng-disabled="matchConfigForm.$invalid ||
+                             match.state != 'waiting' ||
+                             !match.players ||
+                             match.players < 2 ||
+                             match.players > totalPlayers">
+          Iniciar
+        </button>
+        <button type="button" class="btn btn-warning" ng-click="addPlayer()">Iniciar</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table ng-table-rowselected" ng-table>
+        <tr ng-repeat="quiz in quizzes"
+            ng-click="quiz.$selected = !quiz.$selected"
+            ng-class="{'active': quiz.$selected }">
+          <td data-title="'Título'" sortable="'title'">{{quiz.title}}</td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>
