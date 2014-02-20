@@ -3,7 +3,7 @@
  *
  * Description
  */
-
+ 
 var Quizzer = angular.module('Quizzer', ['ngRoute', 'ui.bootstrap', 'ngTable']);
 
 Quizzer.config(['$routeProvider',function($routeProvider) {
