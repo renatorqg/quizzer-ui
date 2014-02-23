@@ -21,7 +21,8 @@ Quizzer.controller('mainCtrl', ['$scope', '$location', '$log',
 		}
 
 		$scope.playerLogin = function(matchId) {
-			$log.info('Entering in match ' + matchId)
+			$log.info('Entering in match ' + matchId);
+			$location.path('/player');
 		}
 	}
 ]);
@@ -73,6 +74,29 @@ Quizzer.controller('masterCtrl', ['$scope', '$location',
 			$location.path('/');
 		}
 	}
+]);
+
+/*
+ * Controller usado nas telas do player do jogo
+ */
+
+Quizzer.controller('playerCtrl', ['$scope', '$location', '$log',
+	function($scope, $location, $log){
+		$scope.navbar    = 'views/navbarPlayer.html';
+		$scope.container = 'views/quizz.html';
+
+		$scope.logout = function() {
+			$location.path('/');
+		}
+
+		$scope.enviar = function() {
+			$log.info('enviando');
+		}
+
+	}
+
+
+
 ]);
 
 
