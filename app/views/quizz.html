@@ -1,11 +1,12 @@
-<div>
-<p>Qual a cor do cavalo branco de Napoleão?</p>
+<div ng-controller="playerCtrl">
+	<h3>{{ questao[count].title }}</h3>
+<p>{{ questao[count].description }}</p>
 	<ul>
-		<li><input type="radio" name="question" ng-model="selectedAnswer" value="1">Azul</li>
-		<li><input type="radio" name="question" ng-model="selectedAnswer" value="2">Verde</li>
-		<li><input type="radio" name="question" ng-model="selectedAnswer" value="3">Rosa</li>
-		<li><input type="radio" name="question" ng-model="selectedAnswer" value="4">Preto</li>
-		<li><input type="radio" name="question" ng-model="selectedAnswer" value="5">Branco</li>
+		<li><input type="radio" name="question" ng-model="selectedAnswer" value="1">{{ questao[count].options[0] }}</li>
+		<li><input type="radio" name="question" ng-model="selectedAnswer" value="2">{{ questao[count].options[1] }}</li>
+		<li><input type="radio" name="question" ng-model="selectedAnswer" value="3">{{ questao[count].options[2] }}</li>
+		<li><input type="radio" name="question" ng-model="selectedAnswer" value="4">{{ questao[count].options[3] }}</li>
+		<li><input type="radio" name="question" ng-model="selectedAnswer" value="5">{{ questao[count].options[4] }}</li>
 	</ul>
 	<button ng-click="enviar()">Enviar</button>
 </div>

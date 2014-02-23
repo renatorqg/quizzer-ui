@@ -85,12 +85,71 @@ Quizzer.controller('playerCtrl', ['$scope', '$location', '$log',
 		$scope.navbar    = 'views/navbarPlayer.html';
 		$scope.container = 'views/quizz.html';
 
+		$scope.questao = [
+		{
+			title: 'Acordando cedo',
+			description: 'Um belo dia, você acorda cedo. O que você faz?',
+			options: [
+				'Volta a dormir',
+				'Levanta-se e vai mijar',
+				'Reclama do dia',
+				'Diz "bom dia!"',
+				'Nenhuma das anteriores'
+			],
+			correct: 4,
+		},
+		{
+			title: 'Acordando tarde',
+			description: 'Um belo dia, você acorda tarde. O que você faz?',
+			options: [
+				'Volta a dormir',
+				'Levanta-se e vai mijar',
+				'Reclama do dia',
+				'Diz "bom dia!"',
+				'Nenhuma das anteriores'
+			],
+			correct: 0,
+		},
+		{
+			title: 'Acordando muito cedo',
+			description: 'Um belo dia, você acorda muito cedo. O que você faz?',
+			options: [
+				'Volta a dormir',
+				'Levanta-se e vai mijar',
+				'Reclama do dia',
+				'Diz "bom dia!"', 
+				'Nenhuma das anteriores'
+			],
+			correct: 4,
+		},
+		{
+			title: 'Acordando muito tarde',
+			description: 'Um belo dia, você acorda muito tarde. O que você faz?',
+			options: [
+				'Volta a dormir',
+				'Levanta-se e vai mijar',
+				'Reclama do dia',
+				'Diz "bom dia!"',
+				'Nenhuma das anteriores'
+			],
+			correct: 0,
+		},
+	];
+
+
+
 		$scope.logout = function() {
 			$location.path('/');
 		}
 
+		$scope.count = 0;
+		$scope.selectedAnswer = '';
+
 		$scope.enviar = function() {
-			$log.info('enviando');
+			
+			$log.info('enviando resposta da questão ' + $scope.count);
+			$log.info('a resposta escolhida foi ' + $scope.selectedAnswer);
+			$scope.count++;
 		}
 
 	}
